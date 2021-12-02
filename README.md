@@ -3,15 +3,14 @@
 
 ## Getting started after clone 
 ```
-# create a .env file
-cp .env.example .env
-# Fill in the blanks
+# create .env with 
+touch .env
 vi .env
 # Install dependencies
 npm i
 ```
 
-## Web3 with UniswapV1 and Kyber
+## Web3 
 
 Run the command below to use web3 to connect to uniswapV1 and Kyber to get prices.
 
@@ -19,7 +18,7 @@ Run the command below to use web3 to connect to uniswapV1 and Kyber to get price
 node index.js
 ```
 
-## Ethers with UniswapV2 and Kyber
+## Ethers 
 
 Run the command below to use ethers to connect to uniswapV2 and Kyber to get prices.
 
