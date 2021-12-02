@@ -63,9 +63,7 @@ async function monitorPrice() {
 
   try {
 
-    // Change custom contracts here
-    //Change output token Symbol 
-    // Change output token address
+
 
     await checkPair({
       inputTokenSymbol: 'ETH',

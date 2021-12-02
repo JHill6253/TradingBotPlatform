@@ -1,6 +1,4 @@
 require('dotenv').config()
-
-//http dependencies
 const express = require('express')
 const bodyParser = require('body-parser')
 const http = require('http')
@@ -8,18 +6,15 @@ const moment = require('moment-timezone')
 const numeral = require('numeral')
 const _ = require('lodash')
 const axios = require('axios')
-
-// ethereum dependencies
 const ethers = require('ethers');
 const { parseUnits, formatUnits } = ethers.utils;
 const { legos } = require('@studydefi/money-legos');
 
-// SERVER CONFIG
+//Server
 const PORT = process.env.PORT || 5000
 const app = express();
 const server = http.createServer(app).listen(PORT, () => console.log(`Listening on ${ PORT }`))
-
-// ETHERS CONFIG
+ //ETH
 const provider = new ethers.providers.JsonRpcProvider(process.env.RPC_URL);
 
 // Contracts
@@ -41,12 +36,12 @@ async function checkPair(args) {
   const { inputTokenSymbol, inputTokenAddress, outputTokenSymbol, outputTokenAddress, inputAmount } = args
   
   
-  // calculate uniswap amount
+  // uniswap amount
   const path = [inputTokenAddress, outputTokenAddress];
   const amounts = await uniswapV2.getAmountsOut(inputAmount, path);
   const uniswapAmount = amounts[1];
   
-  // calculate kyber amount
+  // kyber amount
   const { expectedRate, slippageRate } = await kyber.getExpectedRate(inputTokenAddress, outputTokenAddress, inputAmount);
   const kyberExpectedAmount = expectedRate;
   const kyberSlippageAmount = slippageRate;
@@ -77,9 +72,8 @@ async function monitorPrice() {
 
   try {
 
-    // ADD YOUR CUSTOM TOKEN PAIRS HERE!!!
     
-    const WETH_ADDRESS = await uniswapV2.WETH(); // Uniswap V2 uses wrapped eth
+    const WETH_ADDRESS = await uniswapV2.WETH(); 
   
     await checkPair({
       inputTokenSymbol: 'WETH',
